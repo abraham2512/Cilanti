@@ -1,4 +1,5 @@
+import urlparse
 class Links:
 
-    def parse_link(self, link):
+    def parse_link(self, response):
         

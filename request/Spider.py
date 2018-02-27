@@ -1,16 +1,17 @@
 from requests import get, post
 from threading import Thread
 from multiprocessing.pool import ThreadPool
-import MyCrawlconfig
+from bs4 import BeautifulSoup
+import Cilanticonfig
 
 request_method={
     'get' : get,
     'post': post,
 }
-
+#link=Links()
 class Spider:
     def __init__(self):
-        self.threadPool = ThreadPool(MyCrawlconfig.MAX_THREAD)
+        self.threadPool = ThreadPool(Cilanticonfig.MAX_THREAD)
 
     def spi_request(self, method, *args, **kwargs):
         '''used to get the request pages async
@@ -22,4 +23,4 @@ class Spider:
     def spi_response(self, response, *args, **kwargs):
         '''Response of the spi_request are handled here
         '''
-        print(response.content)
+        link.parse_link(response)
