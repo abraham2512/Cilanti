@@ -6,15 +6,15 @@ def wait():
     if Cilanticonfig.DONE == True:
         return
     else:
-        input("Enter value")
+        input()
         wait()
 
 thread = Thread(target=wait)
 thread.start()
 
 spider = Spider.Spider()
-for i in range(0,1) :
-    spider.spi_request('get', 'https://stackoverflow.com')
-
+for i in spider.initial_url :
+    spider.spi_request('get', i)
+    
 thread.join()
 print("Done")
