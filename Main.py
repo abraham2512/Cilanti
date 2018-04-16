@@ -17,7 +17,6 @@ thread.start()
 '''Spider instance created here'''
 
 spider = Spider.Spider()
-k = 0
 for i in spider.URLset:
     spider.spi_request('get', i)
 

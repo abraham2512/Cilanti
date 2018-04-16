@@ -3,6 +3,7 @@ from multiprocessing.pool import ThreadPool
 from links import Links
 from hasher import Hasher
 import Cilanticonfig
+from database import Database
 
 request_method = {
     'get': get,
@@ -16,6 +17,7 @@ class Spider:
         self.threadPool = ThreadPool(Cilanticonfig.MAX_THREAD)
         self.URLset = Cilanticonfig.getSeed()
         self.URLhash = set([])
+        self.database = Database(Cilanticonfig.dbfile)
 
     def spi_request(self, method, *args, **kwargs):
         '''used to get the request pages async
@@ -32,6 +34,15 @@ class Spider:
             if hash_val not in self.URLhash:
                 self.URLhash.add(hash_val)
                 self.URLset.union(Links.parse_link(response))
+
+               #STORE CURRENT URL AND DATA HERE
+               # Database.saveData(url,response.content,keyword)
+
+
+
+
+
+
 
 
 
