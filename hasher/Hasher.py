@@ -1,7 +1,6 @@
 import hashlib
 
 
-
 def HashMD5(content):
         hashMD5 = hashlib.md5()
         hashMD5.update(content)

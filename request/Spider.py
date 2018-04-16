@@ -1,7 +1,5 @@
 from requests import get, post
-from threading import Thread
 from multiprocessing.pool import ThreadPool
-from bs4 import BeautifulSoup
 from links import Links
 from hasher import Hasher
 import Cilanticonfig
@@ -16,7 +14,7 @@ class Spider:
 
     def __init__(self):
         self.threadPool = ThreadPool(Cilanticonfig.MAX_THREAD)
-        self.initial_url = Cilanticonfig.getSeed()
+        self.URLset = Cilanticonfig.getSeed()
         self.URLhash = set([])
 
     def spi_request(self, method, *args, **kwargs):
@@ -33,11 +31,9 @@ class Spider:
             hash_val = Hasher.HashMD5(response.content)
             if hash_val not in self.URLhash:
                 self.URLhash.add(hash_val)
-                self.initial_url.union(Links.parse_link(response))
+                self.URLset.union(Links.parse_link(response))
 
-    def printHash(self):
-        for i in self.URLhash:
-            print(i)
+
 
 
 

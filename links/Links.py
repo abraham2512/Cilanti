@@ -13,6 +13,6 @@ def parse_link(response):
             urls.add(base_link)
 
     for i in urls:
-      print(i)
-      print("\n")
+        print(i)
+        print("\n")
     return urls
